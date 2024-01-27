@@ -1,0 +1,41 @@
+public class quickSorting {
+    public static void Quick(int nums[], int si, int ei){
+        if (si>=ei){
+            return;
+        }
+        int idx=Partiton(nums, si,ei); //find the pivot place
+        //and after find the place of pivot then sort both side
+        Quick(nums, si,idx-1);  // for left side sort
+        Quick(nums, idx+1, ei);  //for right side sort
+
+    }
+    public static int Partiton(int nums[], int si, int ei){
+        int pivot=nums[ei];
+        int i=si-1;
+
+        for (int j=si ; j<ei; j++){
+            if (nums[j]<=pivot){
+                i++;
+                int temp=nums[ j ];
+                nums[j]=nums[i];
+                nums[i]=temp;
+            }
+        }
+        i++;
+        int temp=pivot;
+        nums[ei]=nums[i];
+        nums[i]=temp;
+        return i;
+    }
+    public static void print(int nums[]){
+        for (int i=0; i<nums.length; i++){
+            System.out.print(nums[i]+" ");
+        }
+    }
+
+    public static void main(String[] args) {
+        int nums[]={4,2,5,1,6,8,7,11};
+     Quick(nums,0,nums.length-1);
+     print(nums);
+    }
+}
